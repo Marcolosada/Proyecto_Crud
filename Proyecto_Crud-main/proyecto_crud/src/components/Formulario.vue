@@ -57,8 +57,7 @@ export default {
 </script>
 <template>
     <form class="w-full max-w-lg">
-
-  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nombre">
         NOMBRE
@@ -80,7 +79,7 @@ export default {
         ESTADO CIVIL
       </label>
       <div class="relative">
-        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="estadoCivil">
+        <select v-model="estadoCivil" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="estadoCivil">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -99,7 +98,7 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="trabajo">
         TRABAJO
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="trabajo" type="text" placeholder=" ">
+      <input  v-model="trabajo" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="trabajo" type="text" placeholder=" ">
     </div>
 
   </div>
@@ -109,14 +108,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="residencia">
         RESIDENCIA
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="residencia" type="string" placeholder="  ">
+      <input v-model="residencia" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="residencia" type="string" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="cita">
         CITA
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="cita" type="text" placeholder="  ">
+      <input  v-model="cita" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="cita" type="text" placeholder="  ">
     </div>
 
   </div>
@@ -125,14 +124,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="citaAutor">
         CITA AUTOR
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="citaAutor" type="text" placeholder="  ">
+      <input v-model="citaAutor" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="citaAutor" type="text" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="bio">
         BIO
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="bio" type="string" placeholder="22">
+      <input v-model="bio" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="bio" type="string" placeholder="22">
     </div>
   </div>
 
@@ -141,14 +140,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad01">
         PERSONALIDAD 1
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad01" type="text" placeholder="  ">
+      <input  v-model="personalidad01" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad01" type="text" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad02">
         PERSONALIDAD 2
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad02" type="string" placeholder="22">
+      <input  v-model="personalidad02" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad02" type="string" placeholder="22">
     </div>
   </div>
 
@@ -157,14 +156,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad03">
         PERSONALIDAD 3
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad03" type="text" placeholder="  ">
+      <input v-model="personalidad03" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad03" type="text" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad04">
         PERSONALIDAD 4
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad04" type="string" placeholder="22">
+      <input v-model="personalidad04" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad04" type="string" placeholder="22">
     </div>
   </div>
 
@@ -173,14 +172,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="objetivos">
         OBJETIVOS
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="objetivos" type="text" placeholder="  ">
+      <input  v-model="objetivos" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="objetivos" type="text" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="frustraciones">
         FRUSTRACIONES
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="frustraciones" type="string" placeholder="22">
+      <input  v-model="frustraciones" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="frustraciones" type="string" placeholder="22">
     </div>
   </div>
 
@@ -189,14 +188,14 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="motivaciones">
         MOTIVACIONES
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="motivaciones" type="text" placeholder="  ">
+      <input v-model="motivaciones" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="motivaciones" type="text" placeholder="  ">
     </div>
 
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="porcentaje">
         PORCENTAJES
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="porcentaje" type="string" placeholder="22">
+      <input v-model="porcentaje" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="porcentaje" type="string" placeholder="22">
     </div>
   </div>
 
@@ -204,7 +203,7 @@ export default {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="marcas">
         MARCAS
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="marcas" type="string" placeholder="22">
+      <input v-model="marcas" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="marcas" type="string" placeholder="22">
     </div>
 
     <button
@@ -217,3 +216,4 @@ export default {
 
 </form>
 </template>
+   
