@@ -1,5 +1,132 @@
 
 <script>
+import axios from "axios";
+let API_URL = `/api/guardarPersonasUxd.php`;
+export default {
+    data() {
+        return {
+            nombre: "",
+            edad: "",
+            estadoCivil: "",
+            trabajo: "",
+            residencia: "",
+            cita: "",
+            citaAutor: "",
+            bio: "",
+            personalidad01: "50",
+            personalidad02: "50",
+            personalidad03: "50",
+            personalidad04: "50",
+            objetivos: [""],
+            frustraciones: [""],
+            motivaciones: "",
+            porcentaje: "",
+            marcas: "",
+        };
+    },
+    methods: {
+      Enviar(){
+            if(this.validar() ){
+                axios.post("/api/guardarPersonasUxd.php", {
+                nombre: this.nombre,
+                edad: this.edad,
+                estadoCivil: this.estadoCivil,
+                trabajo: this.trabajo,
+                residencia: this.residencia,
+                cita: this.cita,
+                citaAutor: this.citaAutor,
+                bio: this.bio,
+                personalidad01: this.personalidad1,
+                personalidad02: this.personalidad2,
+                personalidad03: this.personalidad3,
+                personalidad04: this.personalidad4,
+                objetivos: this.objetivos,
+                frustraciones: this.frustraciones,
+                motivaciones: this.motivaciones,
+                marcas: this.marcas
+                //completar las variables, estas deben llamarse como las que se recibirán en el backend sin el símbolo del dolar $
+            })
+            .then((response) => {
+            console.log(response.status)
+            });
+            }
+
+        },
+        validar(){
+//nombre
+          if(this.nombre != "" && !isNaN (this.nombre) === false && this.nombre.length <201 && this.nombre.length > 2 ) {
+            console.log("el nombre es correcto")
+             
+            //edad
+            if (this.edad.length < 3 && this.edad != ""){
+              console.log("edad existe")
+            }else{
+              console.log("no existe esa edad")
+            }
+
+            //Estado civil
+            if (this.estadoCivil != ""){
+              console.log("si selecciono estado civil")
+            }else{
+              console.log("no selecciono estado civil")
+              return false
+            }
+
+            //Trabajo
+            if (this.trabajo.length < 201 && this.trabajo != "" && !isNaN (this.trabajo) === false){
+              console.log("trabajo existe")
+            }else{
+              console.log("no existe trabajo")
+              return false
+            }
+
+            //Residencia
+            if (this.residencia.length < 201 && this.residencia != "" && !isNaN (this.residencia) === false){
+              console.log("residencia existe")
+            }else{
+              console.log("no existe residencia")
+              return false
+            }
+
+            //Cita
+            if (this.cita.length < 501 && this.cita != "" && !isNaN (this.cita) === false){
+              console.log("Cita existe")
+            }else{
+              console.log("Cita no existe")
+              return false
+            }
+
+            //CitaAutor
+            if (this.citaAutor.length < 501 && this.citaAutor != "" && !isNaN (this.citaAutor) === false){
+              console.log("CitaAutor existe")
+            }else{
+              console.log("CitaAutor no existe")
+              return false
+            }
+
+            //Bio
+            if (this.bio.length < 701 && this.bio != "" && !isNaN (this.bio) === false){
+              console.log("Bio correcta")
+            }else{
+              console.log("Bio incorrecta")
+              return false
+            }
+
+          return true
+                       
+          }
+          else{
+            console.log("No pude registrarlo")
+            return false
+          }
+          
+
+            }
+
+
+
+    }
+}
 </script>
 <template>
     <form class="w-full max-w-lg">
