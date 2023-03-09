@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+//import slider from '../components/InputSliders.vue';
 let API_URL = `/api/guardarPersonasUxd.php`;
 export default {
     data() {
@@ -12,22 +13,21 @@ export default {
             cita: "",
             citaAutor: "",
             bio: "",
-            personalidad01: "",
-            personalidad02: "",
-            personalidad03: "",
-            personalidad04: "",
-            objetivos: "",
-            frustraciones: "",
+            personalidad01: "50",
+            personalidad02: "50",
+            personalidad03: "50",
+            personalidad04: "50",
+            objetivos: [""],
+            frustraciones: [""],
             motivaciones: "",
             porcentaje: "",
             marcas: "",
         };
     },
     methods: {
-        summit() {
-            API_URL + this.pagina;
-            console.log(API_URL);
-            axios.post("/api/guardarPersonasUxd.php", {
+      Enviar(){
+            if(this.validar() ){
+                axios.post("/api/guardarPersonasUxd.php", {
                 nombre: this.nombre,
                 edad: this.edad,
                 estadoCivil: this.estadoCivil,
@@ -36,184 +36,263 @@ export default {
                 cita: this.cita,
                 citaAutor: this.citaAutor,
                 bio: this.bio,
-                personalidad01: this.personalidad01,
-                personalidad02: this.personalidad02,
-                personalidad03: this.personalidad03,
-                personalidad04: this.personalidad04,
+                personalidad01: this.personalidad1,
+                personalidad02: this.personalidad2,
+                personalidad03: this.personalidad3,
+                personalidad04: this.personalidad4,
                 objetivos: this.objetivos,
                 frustraciones: this.frustraciones,
                 motivaciones: this.motivaciones,
-                porcentaje: this.porcentaje,
-                marcas: this.marcas,
+                marcas: this.marcas
                 //completar las variables, estas deben llamarse como las que se recibirán en el backend sin el símbolo del dolar $
             })
-                .then((response) => {
-                    console.log(response.status)
-                });
-        },
-    },
-};
+            .then((response) => {
+            console.log(response.status)
+            });
+            }
 
+        },
+        validar(){
+//nombre
+          if(this.nombre != "" && !isNaN (this.nombre) === false && this.nombre.length <201 && this.nombre.length > 2 ) {
+            console.log("el nombre es correcto")
+             
+            //edad
+            if (this.edad.length < 3 && this.edad != ""){
+              console.log("edad existe")
+            }else{
+              console.log("no existe esa edad")
+            }
+
+            //Estado civil
+            if (this.estadoCivil != ""){
+              console.log("si selecciono estado civil")
+            }else{
+              console.log("no selecciono estado civil")
+              return false
+            }
+
+            //Trabajo
+            if (this.trabajo.length < 201 && this.trabajo != "" && !isNaN (this.trabajo) === false){
+              console.log("trabajo existe")
+            }else{
+              console.log("no existe trabajo")
+              return false
+            }
+
+            //Residencia
+            if (this.residencia.length < 201 && this.residencia != "" && !isNaN (this.residencia) === false){
+              console.log("residencia existe")
+            }else{
+              console.log("no existe residencia")
+              return false
+            }
+
+            //Cita
+            if (this.cita.length < 501 && this.cita != "" && !isNaN (this.cita) === false){
+              console.log("Cita existe")
+            }else{
+              console.log("Cita no existe")
+              return false
+            }
+
+            //CitaAutor
+            if (this.citaAutor.length < 501 && this.citaAutor != "" && !isNaN (this.citaAutor) === false){
+              console.log("CitaAutor existe")
+            }else{
+              console.log("CitaAutor no existe")
+              return false
+            }
+
+            //Bio
+            if (this.bio.length < 701 && this.bio != "" && !isNaN (this.bio) === false){
+              console.log("Bio correcta")
+            }else{
+              console.log("Bio incorrecta")
+              return false
+            }
+
+          return true
+                       
+          }
+          else{
+            console.log("No pude registrarlo")
+            return false
+          }
+          
+
+            }
+
+
+
+    }
+}
 </script>
 <template>
-    <form class="w-full max-w-lg">
-    <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nombre">
-        NOMBRE
-      </label>
-      <input v-model="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="nombre" type="text" placeholder="Jane">
+<div class="font-sans">
+<form class= "grid grid-cols-3">
+
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+    <div class="relative sm:max-w-sm w-full">
+      <div class="card bg-pink-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+      <div class="card bg-green-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+      <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+        <label for="" class="block text-sm text-gray-700 text-center font-semibold">
+          Formulario de Registro.
+        </label>
+        <form method="#" action="#" class="mt-10">
+
+          <div>
+            <label for="nombre">Ingresa tu nombre</label>
+            <input v-model="nombre" type="text" id="nombre"  placeholder="Nombre" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+
+          <div class="mt-7">
+            <label for="edad">Ingresa tu edad:</label>
+            <input v-model="edad" type="text" id="edad" placeholder="Edad" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="tranbajo">Trabajo</label>
+            <input v-model="trabajo" id="trabajo" type="text" placeholder="Trabajo" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="residencia">Residencia</label>
+            <input v-model="residencia" id="resindencia" type="text" placeholder="Residencia" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div class="mt-7">
+            <label class="mt-7">Estado Civil:</label>
+                <select v-model="estadoCivil" name="estadoCivil" id="estadoCivil"  class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0" placeholder="Selecciona">
+                <option value="1">Soltero</option>
+                <option value="2">Casado </option>
+                <option value="3">Divorciado</option>
+                <option value="4">Separado</option>
+                <option value="5">Unión libre</option>
+                <option value="6">Viudo</option>
+              </select>
+                </div>
+        </form>
     </div>
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="edad">
-        EDAD
-      </label>
-      <input  v-model="edad" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="edad" type="string" placeholder="22">
     </div>
-  </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="estadoCivil">
-        ESTADO CIVIL
-      </label>
-      <div class="relative">
-        <select v-model="estadoCivil" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="estadoCivil">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
+        <div>
+          <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+           <div class="relative sm:max-w-sm w-full">
+      <div class="card bg-pink-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+      <div class="card bg-green-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+      <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+          <label for="cita" class="mt-7">Cita</label>
+            <input v-model="cita" id="trabajo" type="text" placeholder="Cita" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+            <div>
+            <label for="citaAutor">Cita de CitaAutor</label>
+            <input v-model="citaAutor" id="citaAutor" type="text" placeholder="CitaAutor" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="objetivos">Objetivos</label>
+            <input v-model="objetivos" id="objetivos" type="text" placeholder="Objetivos" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="frustaciones">Frustraciones</label>
+            <input v-model="frustraciones" id="frustaciones" type="text" placeholder="Frustaciones" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="motivaciones">Motivaciones</label>
+            <input v-model="motivaciones" id="motivaciones" type="text" placeholder="Motivaciones" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
+          <div>
+            <label for="marcas">marcas</label>
+            <input v-model="marcas" id="marcas" type="text" placeholder="Marcas" class="focus:outline-none pl-2.5 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-gray-200 focus:bg-gray-100 focus:ring-0">
+          </div>
       </div>
-    </div>
+           </div>
+          </div>
+          </div>
+          <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+           <div class="relative sm:max-w-sm w-full">
+      <div class="card bg-pink-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+      <div class="card bg-green-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+      <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+          <div class="mt-7">
+ <h1 class="mt-7">Personalidad</h1>
+  <div>
+          <div >
+            <label class="block text-black font-bold md:text-left my-2 md:mb-0">
+            Personalidad 1.- Mente
+          </label><br>
+          <div class="flex">
+          <h1 class="px-2">Extrovertido  {{ this.Personalidad1 }}% </h1>
+          
+          <slider @person="pers1">Personalidad 01</slider>
+          
+          <h1> Introvertido {{100- this.Personalidad1 }}% </h1>
+          
+        </div>
 
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="trabajo">
-        TRABAJO
-      </label>
-      <input  v-model="trabajo" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="trabajo" type="text" placeholder=" ">
-    </div>
+          </div>
 
   </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="residencia">
-        RESIDENCIA
-      </label>
-      <input v-model="residencia" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="residencia" type="string" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="cita">
-        CITA
-      </label>
-      <input  v-model="cita" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="cita" type="text" placeholder="  ">
-    </div>
-
-  </div>
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="citaAutor">
-        CITA AUTOR
-      </label>
-      <input v-model="citaAutor" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="citaAutor" type="text" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="bio">
-        BIO
-      </label>
-      <input v-model="bio" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="bio" type="string" placeholder="22">
-    </div>
-  </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad01">
-        PERSONALIDAD 1
-      </label>
-      <input  v-model="personalidad01" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad01" type="text" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad02">
-        PERSONALIDAD 2
-      </label>
-      <input  v-model="personalidad02" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad02" type="string" placeholder="22">
-    </div>
-  </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad03">
-        PERSONALIDAD 3
-      </label>
-      <input v-model="personalidad03" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad03" type="text" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personalidad04">
-        PERSONALIDAD 4
-      </label>
-      <input v-model="personalidad04" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalidad04" type="string" placeholder="22">
-    </div>
-  </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="objetivos">
-        OBJETIVOS
-      </label>
-      <input  v-model="objetivos" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="objetivos" type="text" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="frustraciones">
-        FRUSTRACIONES
-      </label>
-      <input  v-model="frustraciones" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="frustraciones" type="string" placeholder="22">
-    </div>
-  </div>
-
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="motivaciones">
-        MOTIVACIONES
-      </label>
-      <input v-model="motivaciones" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="motivaciones" type="text" placeholder="  ">
-    </div>
-
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="porcentaje">
-        PORCENTAJES
-      </label>
-      <input v-model="porcentaje" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="porcentaje" type="string" placeholder="22">
-    </div>
-  </div>
-
-  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="marcas">
-        MARCAS
-      </label>
-      <input v-model="marcas" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="marcas" type="string" placeholder="22">
-    </div>
-
-    <button
-    @click="summit()"
-    
-     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        ENVIAR
         
-    </button>
 
-</form>
+
+  <div>
+          <div>
+            <label>
+            Personalidad 2.- Energía
+          </label><br>
+
+          <div class="flex">
+          <h1 class="px-2">Intuitivo  {{ this.Personalidad2 }}% </h1>
+          <slider @person="pers2">Personalidad 02</slider>
+            <h1> Observador {{100- this.Personalidad2 }}% </h1>
+          
+        </div>
+
+          </div>
+
+  </div>
+
+  <div>
+          <div>
+            <label>
+            Personalidad 3.-Naturaleza
+          </label><br>
+
+          <div class="flex">
+          <h1 class="px-2">Pensamiento  {{ this.Personalidad3 }}% </h1>
+          <slider @person="pers3">Personalidad 03</slider> 
+         <h1> Emocional {{100- this.Personalidad3 }}% </h1>
+          
+        </div>
+
+
+          </div>
+
+  </div>
+
+  <div class="mt-7">
+          <div class="mt-7 ">
+            <label class="mt-7">
+            Personalidad 4.- Identidad
+          </label><br>
+
+          <div class="flex">
+          <h1 class="px-2">Asertivo {{ this.Personalidad4 }}% </h1>
+          <slider @person="pers4">Personalidad 04</slider>
+          <h1> Cauteloso {{100- this.Personalidad4 }}% </h1>
+          
+        </div>
+
+          </div>
+          </div>
+          </div>
+          </div>
+
+  </div>
+  </div>
+          
+          <button @click="Enviar()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              ENVIAR
+        </button>
+          </form>
+        </div>
 </template>
    

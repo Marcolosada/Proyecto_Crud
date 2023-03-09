@@ -4,11 +4,11 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <header class="bg-gray-100">
+    <img alt="Vue logo" class="logo" src="@/assets/logoisc.png" width="150" height="150" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="mt-7">
+      <HelloWorld msg="Proyecto Api" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
